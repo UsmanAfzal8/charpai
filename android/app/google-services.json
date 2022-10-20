@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "68990521985",
+    "project_id": "charpaiproject",
+    "storage_bucket": "charpaiproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68990521985:android:6950ec28ef068eba84b380",
+        "android_client_info": {
+          "package_name": "com.example.charpi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68990521985-a3sik8kkf5d2nau2t6jh2re1m60fau7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_nHgFLpURgrnUOgkxH2_jB6Z6IXSSP8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68990521985-a3sik8kkf5d2nau2t6jh2re1m60fau7u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
