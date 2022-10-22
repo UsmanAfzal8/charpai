@@ -8,6 +8,7 @@ import 'providers/cart_provider.dart';
 import 'providers/categories_provider.dart';
 import 'providers/product_provider.dart';
 import 'providers/provider.dart';
+import 'providers/user_change_provider.dart';
 import 'screens/auth/phone_registration/phone_number_screen.dart';
 import 'screens/screens.dart';
 
@@ -31,8 +32,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CartProvider>(
           create: (BuildContext context) => CartProvider(),
         ),
-        ChangeNotifierProvider<AuthProvider>(
-          create: (BuildContext context) => AuthProvider(),
+        // ChangeNotifierProvider<AuthProvider>(
+        //   create: (BuildContext context) => AuthProvider(),
+        // ),
+        ChangeNotifierProxyProvider<UserChangeProvider,AuthProvider>(
+          
+          create: (BuildContext context) =>AuthProvider(),
+          update: (BuildContext ctx, UserChangeProvider userPro,
+                   AuthProvider? authPro) =>
+              authPro!..refresh(userPro),
+        ),
+          
+          
+        ChangeNotifierProvider<UserChangeProvider>(
+          create: (BuildContext context) => UserChangeProvider(),
         ),
         ChangeNotifierProvider<AppThemeProvider>.value(
           value: AppThemeProvider(),

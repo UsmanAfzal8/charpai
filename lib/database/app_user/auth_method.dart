@@ -11,7 +11,7 @@ class AuthMethods {
   static String get uid => _auth.currentUser?.uid ?? '';
  static String get phoneNumber => _auth.currentUser?.phoneNumber ?? '';
 
-  Future<int> verifyOTP(String verificationId, String otp) async {
+  Future<int> verifyOTP(String verificationId, String otp,String col) async {
     try {
       PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: otp);
@@ -20,7 +20,7 @@ class AuthMethods {
 
       if (authCredential.user != null) {
         final AppUser? appUser =
-            await UserApi().user(uid: authCredential.user!.uid);
+            await UserApi().user(uid: authCredential.user!.uid,col:col );
         if (appUser == null) return 0; // User is New on App
         return 1; // User Already Exist NO new info needed
       }

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:charpi/providers/user_change_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,6 +22,8 @@ class AuthProvider extends ChangeNotifier {
   //
   // REGISTER FUNCTIONS
   //
+
+  
   Future<void> onRegister(BuildContext context) async {
     if (_phoneNumber == null || AuthMethods.getCurrentUser == null) {
       CustomToast.errorToast(message: 'Enter Phone Number again');
@@ -59,7 +62,7 @@ class AuthProvider extends ChangeNotifier {
         ),
       );
 
-      final bool added = await UserApi().register(user: appuser);
+      final bool added = await UserApi().register(user: appuser, col: colection);
       _isRegsiterScreenLoading = false;
       notifyListeners();
       if (added) {
@@ -125,7 +128,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<int> varifyOTP(String otp) async {
     if (_verificationId == null) return 0;
-    final int num = await AuthMethods().verifyOTP(_verificationId!, otp);
+    final int num = await AuthMethods().verifyOTP(_verificationId!, otp,colection);
     return num;
   }
 
@@ -179,4 +182,10 @@ class AuthProvider extends ChangeNotifier {
   bool get isRegsiterScreenLoadingn => _isRegsiterScreenLoading;
 
   Uint8List? get profilePhoto => _profilePhoto;
+  String colection='users';
+  refresh(UserChangeProvider userPro) {
+   colection=userPro.currentperson;
+   notifyListeners();
+
+  }
 }
