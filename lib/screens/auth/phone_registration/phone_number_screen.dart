@@ -54,19 +54,19 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   onTap: () {
                     authPro.verifyPhone(context);
                     Navigator.push(
-                                  context,
-                                  // ignore: always_specify_types
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>const  OTPScreen(),
-                                  ),
-                                );
+                      context,
+                      // ignore: always_specify_types
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const OTPScreen(),
+                      ),
+                    );
                     //Navigator.of(context).pushNamed(OTPScreen.routeName);
                   },
                 ),
               ),
               ElevatedButton(
                   onPressed: () {
-                   // print(authPro.verificationId);
+                    //print(authPro.colection);
                   },
                   child: const Text('otp'))
             ],

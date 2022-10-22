@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/auth_provider.dart';
+import '../../../providers/user_change_provider.dart';
 import '../../../widgets/custom_file_image_box.dart';
 import '../../../widgets/custom_widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_widgets/custom_textformfield.dart';
@@ -18,8 +19,8 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
-      builder: (BuildContext context, AuthProvider authPro, _) {
+    return Consumer2<AuthProvider,UserChangeProvider>(
+      builder: (BuildContext context, AuthProvider authPro,UserChangeProvider userPro, _) {
         return SafeArea(
           child: Scaffold(
             body: Form(
@@ -70,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ? const ShowLoading()
                           : CustomElevatedButton(
                               title: 'Register',
-                              onTap: () => authPro.onRegister(context),
+                              onTap: () => authPro.onRegister(context,userPro.currentperson),
                             ),
                       const SizedBox(height: 40),
                     ],

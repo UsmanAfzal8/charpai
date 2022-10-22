@@ -23,36 +23,39 @@ class AuthProvider extends ChangeNotifier {
   // REGISTER FUNCTIONS
   //
 
-  
-  Future<void> onRegister(BuildContext context) async {
+  void refresh(UserChangeProvider userPro) {
+    print('enter hovaya c');
+    print('person : ' + userPro.currentperson);
+    // colection = userPro.currentperson;
+    // notifyListeners();
+  }
+
+  Future<void> onRegister(BuildContext context,String colection) async {
     if (_phoneNumber == null || AuthMethods.getCurrentUser == null) {
       CustomToast.errorToast(message: 'Enter Phone Number again');
       Navigator.push(
-                    context,
-                    // ignore: always_specify_types
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => PhoneNumberScreen(),
-                    ),
-                  );
-      
+        context,
+        // ignore: always_specify_types
+        MaterialPageRoute(
+          builder: (BuildContext context) => PhoneNumberScreen(),
+        ),
+      );
     } else if (_registerKey.currentState!.validate()) {
       String? url = '';
       _isRegsiterScreenLoading = true;
       notifyListeners();
       if (_profilePhoto != null) {
         //url = await UserApi().uploadProfilePhoto(file: _profilePhoto!);
-       url = await Storagemethod().uploadtostorage(
-        'users',
-        AuthMethods.uid,
-        _profilePhoto!,
-      );
+        url = await Storagemethod().uploadtostorage(
+          'users',
+          AuthMethods.uid,
+          _profilePhoto!,
+        );
       }
       final AppUser appuser = AppUser(
         uid: AuthMethods.uid,
         name: _name.text.trim(),
-       
         imageURL: url,
-        
         phoneNumber: NumberDetails(
           countryCode: _phoneNumber!.countryCode,
           number: _phoneNumber!.number,
@@ -62,21 +65,22 @@ class AuthProvider extends ChangeNotifier {
         ),
       );
 
-      final bool added = await UserApi().register(user: appuser, col: colection);
+      final bool added =
+          await UserApi().register(user: appuser, col: colection);
       _isRegsiterScreenLoading = false;
       notifyListeners();
       if (added) {
         // ignore: use_build_context_synchronously
         Navigator.push(
-                      context,
-                      // ignore: always_specify_types
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => const MainScreen(),
-                      ),
-                    );
+          context,
+          // ignore: always_specify_types
+          MaterialPageRoute(
+            builder: (BuildContext context) => const MainScreen(),
+          ),
+        );
         //push to main Screen
         // ignore: use_build_context_synchronously
-        
+
       }
     }
   }
@@ -126,9 +130,10 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<int> varifyOTP(String otp) async {
+  Future<int> varifyOTP(String otp,String colection) async {
     if (_verificationId == null) return 0;
-    final int num = await AuthMethods().verifyOTP(_verificationId!, otp,colection);
+    final int num =
+        await AuthMethods().verifyOTP(_verificationId!, otp, colection);
     return num;
   }
 
@@ -182,10 +187,5 @@ class AuthProvider extends ChangeNotifier {
   bool get isRegsiterScreenLoadingn => _isRegsiterScreenLoading;
 
   Uint8List? get profilePhoto => _profilePhoto;
-  String colection='users';
-  refresh(UserChangeProvider userPro) {
-   colection=userPro.currentperson;
-   notifyListeners();
-
-  }
+  //String colection = '';
 }

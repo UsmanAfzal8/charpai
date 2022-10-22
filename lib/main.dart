@@ -35,15 +35,16 @@ class MyApp extends StatelessWidget {
         // ChangeNotifierProvider<AuthProvider>(
         //   create: (BuildContext context) => AuthProvider(),
         // ),
-        ChangeNotifierProxyProvider<UserChangeProvider,AuthProvider>(
-          
-          create: (BuildContext context) =>AuthProvider(),
-          update: (BuildContext ctx, UserChangeProvider userPro,
-                   AuthProvider? authPro) =>
-              authPro!..refresh(userPro),
+         ChangeNotifierProvider<UserChangeProvider>(
+          create: (BuildContext context) => UserChangeProvider(),
         ),
-          
-          
+        ChangeNotifierProxyProvider<UserChangeProvider, AuthProvider>(
+          update: (BuildContext ctx, UserChangeProvider userPro,
+                  AuthProvider? authPro) =>
+              authPro!..refresh(userPro),
+          create: (BuildContext context) => AuthProvider(),
+        ),
+     
         ChangeNotifierProvider<UserChangeProvider>(
           create: (BuildContext context) => UserChangeProvider(),
         ),
