@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/categories_provider.dart';
@@ -6,7 +5,7 @@ import '../../providers/product_provider.dart';
 import '../../utilities/app_images.dart';
 import '../../widgets/custom_widgets/custom_widget.dart';
 
-import 'all_contacts_catrgories/all_screen.dart';
+import 'categories/category.dart';
 import 'header.dart';
 
 import 'latest_product/latest_product.dart';
@@ -43,19 +42,28 @@ class HomeScreen extends StatelessWidget {
             children: const <Widget>[
               Headeriamge(),
               SizedBox(height: 20),
-              ForText(
-                name: 'category',
-                bold: true,
-                size: 22,
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ForText(
+                  name: 'category',
+                  bold: true,
+                  size: 22,
+                ),
               ),
               SizedBox(height: 20),
-              //CategoryScreen(),
-              AllScreen(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: CategoryScreen(),
+              ),
+              //AllScreen(),
               SizedBox(height: 20),
-              ForText(
-                name: 'Latest Product',
-                bold: true,
-                size: 22,
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ForText(
+                  name: 'Latest Product',
+                  bold: true,
+                  size: 22,
+                ),
               ),
               SizedBox(height: 20),
               LatestProduct(),
@@ -68,6 +76,7 @@ class HomeScreen extends StatelessWidget {
 
   AppBar appBar(BuildContext context) {
     return AppBar(
+      backgroundColor: Theme.of(context).primaryColor,
       leading: Padding(
         padding: const EdgeInsets.all(16),
         child: Container(
