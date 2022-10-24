@@ -10,13 +10,16 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CategoriesProvider catPro = Provider.of<CategoriesProvider>(context);
-    return SizedBox(
-      height: 35,
-      width: MediaQuery.of(context).size.width,
-      child: ListView.builder(
-          itemCount: catPro.categories.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Categories'),
+        ),
+        body: GridView.count(
+          childAspectRatio: 100 / 80,
+          mainAxisSpacing: 8,
+          crossAxisCount: 2,
+          // ignore: always_specify_types
+          children: List.generate(catPro.categories.length, (int index) {
             return InkWell(
               onTap: () {
                 Navigator.push(
@@ -30,23 +33,27 @@ class CategoryScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: 70,
-                  height: 70,
                   decoration: BoxDecoration(
-                    color: Colors.transparent,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(color: Colors.black),
                   ),
-                  child: Text(
-                    catPro.categories[index].title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 15),
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        catPro.categories[index].title,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 30),
+                    ],
                   ),
                 ),
               ),
             );
           }),
-    );
+        ));
   }
 }

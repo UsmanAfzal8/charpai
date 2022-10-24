@@ -1,24 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../models/product_model.dart';
 import '../../providers/categories_provider.dart';
 import '../../providers/product_provider.dart';
 import '../../utilities/app_images.dart';
 import '../../widgets/custom_widgets/custom_widget.dart';
 import '../search_screen/search_screen.dart';
+import 'all_contacts_catrgories/all_screen.dart';
 import 'card_swiper.dart';
 import 'categories/category.dart';
 import 'latest_product/latest_product.dart';
 import 'upload_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const String routeName = '/HomeScreen';
   const HomeScreen({super.key});
+  static const String routeName = '/HomeScreen';
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: appBar(context),
       floatingActionButton: FloatingActionButton(
@@ -27,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               context,
               // ignore: always_specify_types
               MaterialPageRoute(
-                  builder: (BuildContext context) => UploadScreen()),
+                  builder: (BuildContext context) => const UploadScreen()),
             );
           },
           child: const Icon(Icons.add)),
@@ -52,7 +51,8 @@ class HomeScreen extends StatelessWidget {
                   size: 22,
                 ),
                 SizedBox(height: 20),
-                CategoryScreen(),
+                //CategoryScreen(),
+                AllScreen(),
                 SizedBox(height: 20),
                 ForText(
                   name: 'Latest Product',
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               context,
               // ignore: always_specify_types
               MaterialPageRoute(
-                builder: (BuildContext context) => SerachScreen(),
+                builder: (BuildContext context) => const SerachScreen(),
               ),
             );
           },
@@ -103,8 +103,8 @@ class HomeScreen extends StatelessWidget {
         ),
       ],
       title: Container(
-        height: 60,
-        width: 120,
+        height: 50,
+        width: 100,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(AppImages.logo),

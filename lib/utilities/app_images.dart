@@ -20,9 +20,15 @@ class AppImages {
   static String get profileSelected => 'assets/icons/profile_fill.png';
   static String get profileUnselected => 'assets/icons/profile.png';
 
+  //profile screen icon
+  static String get delivery_address => 'assets/icons/delivery_address.png';
+  static String get order_history => 'assets/icons/order_history.png';
+  static String get logout => 'assets/icons/logout.png';
+  static String get setting => 'assets/icons/setting.png';
+  static String get wallet => 'assets/icons/wallet.png';
 
 //Favorite
-static String get fvrtSelected => 'assets/icons/heartfill.png';
+  static String get fvrtSelected => 'assets/icons/heartfill.png';
   static String get fvrtUnselected => 'assets/icons/heart.png';
   //drwaer
   static String get drawer => 'assets/icons/drawer.png';

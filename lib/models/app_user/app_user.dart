@@ -9,12 +9,14 @@ class AppUser {
   String? imageURL;
   final NumberDetails phoneNumber;
   final String? email;
+  String? usertype;
   AppUser({
     required this.uid,
     this.name,
     this.imageURL,
     required this.phoneNumber,
     this.email,
+    this.usertype,
   });
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -23,10 +25,11 @@ class AppUser {
       'number_details': phoneNumber.toMap(),
       'image_url': imageURL ?? '',
       'email': email ?? '',
+      'user_type': usertype ?? '',
     };
   }
 
-   factory AppUser.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
+  factory AppUser.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
     return AppUser(
       uid: doc.data()?['uid'] ?? '',
       phoneNumber: NumberDetails.fromMap(
@@ -34,6 +37,7 @@ class AppUser {
       name: doc.data()?['display_name'] ?? '',
       imageURL: doc.data()?['image_url'] ?? '',
       email: doc.data()?['email'] ?? '',
+      usertype: doc.data()?['user_type'] ?? '',
     );
   }
 }

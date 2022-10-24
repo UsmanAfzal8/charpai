@@ -1,8 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/auth_provider.dart';
-import '../../../providers/user_change_provider.dart';
 import '../../../widgets/custom_widgets/custom_textformfield.dart';
 import '../../../widgets/custom_widgets/show_loading.dart';
 import '../../main_screen/main_screen.dart';
@@ -20,7 +20,6 @@ class _OTPScreenState extends State<OTPScreen> {
   final TextEditingController _otp = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    UserChangeProvider userPro = Provider.of<UserChangeProvider>(context);
     return Scaffold(
       appBar: AppBar(title: const Text('OTP Varification'), centerTitle: true),
       body: Consumer<AuthProvider>(
@@ -43,25 +42,26 @@ class _OTPScreenState extends State<OTPScreen> {
                 maxLength: 6,
                 onChanged: (String? value) async {
                   if (value!.length == 6) {
-                    final int num =
-                        await authPro.varifyOTP(value, userPro.currentperson);
+                    final int num = await authPro.varifyOTP(value);
                     if (!mounted) return;
                     if (num == 0) {
                       Navigator.push(
-                        context,
-                        // ignore: always_specify_types
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => RegisterScreen(),
-                        ),
-                      );
+                                    context,
+                                    // ignore: always_specify_types
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) => RegisterScreen(),
+                                    ),
+                                  );
+                      
                     } else if (num == 1) {
                       Navigator.push(
-                        context,
-                        // ignore: always_specify_types
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => MainScreen(),
-                        ),
-                      );
+                                    context,
+                                    // ignore: always_specify_types
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) => MainScreen(),
+                                    ),
+                                  );
+                      
                     }
                   }
                 },

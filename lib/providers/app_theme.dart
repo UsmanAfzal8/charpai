@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class AppThemeProvider extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.light    ;
+  ThemeMode _themeMode = ThemeMode.light;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -24,7 +24,7 @@ class AppThemeProvider extends ChangeNotifier {
 
 class AppThemes {
   static const Color _primary = Color(0xffFCBF3A);
-  static const Color _secondary = Color(0xffF6F7F9);
+  static const Color _secondary = Color(0xffE2F0F7);
   //
   // Dark
   //
@@ -42,6 +42,7 @@ class AppThemes {
     ),
     scaffoldBackgroundColor: const Color(0xFF101018),
     primaryColor: _primary,
+    secondaryHeaderColor: _secondary,
     iconTheme: const IconThemeData(color: Colors.white),
     dividerTheme: const DividerThemeData(color: Colors.grey, thickness: 0.5),
     listTileTheme: const ListTileThemeData(
@@ -71,6 +72,7 @@ class AppThemes {
     ),
     scaffoldBackgroundColor: Colors.white,
     primaryColor: _primary,
+    secondaryHeaderColor: _secondary,
     iconTheme: const IconThemeData(color: Colors.black),
     dividerTheme: const DividerThemeData(color: Colors.grey, thickness: 0.5),
     listTileTheme: const ListTileThemeData(

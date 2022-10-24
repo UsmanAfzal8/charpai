@@ -1,6 +1,8 @@
+import 'package:charpi/screens/auth/phone_registration/phone_number_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'database/app_user/auth_method.dart';
 import 'database/local_data.dart';
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
@@ -8,8 +10,6 @@ import 'providers/cart_provider.dart';
 import 'providers/categories_provider.dart';
 import 'providers/product_provider.dart';
 import 'providers/provider.dart';
-import 'providers/user_change_provider.dart';
-import 'screens/auth/phone_registration/phone_number_screen.dart';
 import 'screens/screens.dart';
 
 void main() async {
@@ -32,21 +32,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CartProvider>(
           create: (BuildContext context) => CartProvider(),
         ),
-        // ChangeNotifierProvider<AuthProvider>(
-        //   create: (BuildContext context) => AuthProvider(),
-        // ),
-         ChangeNotifierProvider<UserChangeProvider>(
-          create: (BuildContext context) => UserChangeProvider(),
-        ),
-        ChangeNotifierProxyProvider<UserChangeProvider, AuthProvider>(
-          update: (BuildContext ctx, UserChangeProvider userPro,
-                  AuthProvider? authPro) =>
-              authPro!..refresh(userPro),
+        ChangeNotifierProvider<AuthProvider>(
           create: (BuildContext context) => AuthProvider(),
-        ),
-     
-        ChangeNotifierProvider<UserChangeProvider>(
-          create: (BuildContext context) => UserChangeProvider(),
         ),
         ChangeNotifierProvider<AppThemeProvider>.value(
           value: AppThemeProvider(),
@@ -64,12 +51,14 @@ class MyApp extends StatelessWidget {
       child: Consumer<AppThemeProvider>(
           builder: (BuildContext context, AppThemeProvider theme, _) {
         return MaterialApp(
-          title: 'char pi',
+          title: 'Crypto Cent',
           debugShowCheckedModeBanner: false,
           theme: AppThemes.light,
           darkTheme: AppThemes.dark,
           themeMode: theme.themeMode,
-          home: const AuthScreen(),
+          home: 
+          (AuthMethods.uid.isEmpty)?const PhoneNumberScreen():
+          const MainScreen(),
         );
       }),
     );

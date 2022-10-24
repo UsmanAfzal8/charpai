@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:charpi/providers/user_change_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,22 +21,14 @@ class AuthProvider extends ChangeNotifier {
   //
   // REGISTER FUNCTIONS
   //
-
-  void refresh(UserChangeProvider userPro) {
-    print('enter hovaya c');
-    print('person : ' + userPro.currentperson);
-    // colection = userPro.currentperson;
-    // notifyListeners();
-  }
-
-  Future<void> onRegister(BuildContext context,String colection) async {
+  Future<void> onRegister(BuildContext context) async {
     if (_phoneNumber == null || AuthMethods.getCurrentUser == null) {
       CustomToast.errorToast(message: 'Enter Phone Number again');
       Navigator.push(
         context,
         // ignore: always_specify_types
         MaterialPageRoute(
-          builder: (BuildContext context) => PhoneNumberScreen(),
+          builder: (BuildContext context) => const PhoneNumberScreen(),
         ),
       );
     } else if (_registerKey.currentState!.validate()) {
@@ -56,6 +47,7 @@ class AuthProvider extends ChangeNotifier {
         uid: AuthMethods.uid,
         name: _name.text.trim(),
         imageURL: url,
+        usertype: _userType,
         phoneNumber: NumberDetails(
           countryCode: _phoneNumber!.countryCode,
           number: _phoneNumber!.number,
@@ -65,8 +57,7 @@ class AuthProvider extends ChangeNotifier {
         ),
       );
 
-      final bool added =
-          await UserApi().register(user: appuser, col: colection);
+      final bool added = await UserApi().register(user: appuser);
       _isRegsiterScreenLoading = false;
       notifyListeners();
       if (added) {
@@ -130,38 +121,28 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<int> varifyOTP(String otp,String colection) async {
+  Future<int> varifyOTP(String otp) async {
     if (_verificationId == null) return 0;
-    final int num =
-        await AuthMethods().verifyOTP(_verificationId!, otp, colection);
+    final int num = await AuthMethods().verifyOTP(_verificationId!, otp);
     return num;
   }
 
-  //
-  // INIT
-  //
-  // init() async {
-  //   try {
-  //     http.Response response =
-  //         await http.get(Uri.parse('http://ip-api.com/json'));
-  //     // ignore: always_specify_types
-  //     Map data = json.decode(response.body);
-  //     log(data['countryCode']);
-  //     if (response.statusCode == 200) {
-  //       _phoneNumber!.countryCode = data['countryCode'];
-  //       // dialCode = CountryCode.fromCountryCode(countryCode).dialCode ?? '+1';
+  //GetUser
+  void getUser() async {
+    _apUser = await UserApi().user(uid: AuthMethods.uid);
+    notifyListeners();
+  }
 
-  //     } else {
-  //       _phoneNumber!.countryCode = 'UK';
-  //     }
-  //   } catch (e) {
-  //     _phoneNumber!.countryCode = 'UK';
-  //   }
-  //   notifyListeners();
-  // }
+  String _userType = '';
+  void userType(String value) {
+    _userType = value;
+    notifyListeners();
+  }
 
   //
   // VARIABLES
+  AppUser? _apUser;
+  AppUser get apUser => _apUser!;
   PhoneNumber? _phoneNumber;
   String? _verificationId;
   // String? _smsOTP;
@@ -187,5 +168,4 @@ class AuthProvider extends ChangeNotifier {
   bool get isRegsiterScreenLoadingn => _isRegsiterScreenLoading;
 
   Uint8List? get profilePhoto => _profilePhoto;
-  //String colection = '';
 }

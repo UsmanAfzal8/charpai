@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,39 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC72sLLR4LGlQQ8Hsrl6ei0u0FS5dZbFwE',
-    appId: '1:68990521985:web:0f1539d06252f92c84b380',
-    messagingSenderId: '68990521985',
-    projectId: 'charpaiproject',
-    authDomain: 'charpaiproject.firebaseapp.com',
-    storageBucket: 'charpaiproject.appspot.com',
+    apiKey: 'AIzaSyAsy-wgawIw6tDAbw-efaWXT3gyAxEBUDo',
+    appId: '1:229137297335:web:ba90b4e102b364ee014232',
+    messagingSenderId: '229137297335',
+    projectId: 'crypto-cent',
+    authDomain: 'crypto-cent.firebaseapp.com',
+    storageBucket: 'crypto-cent.appspot.com',
+    measurementId: 'G-ZVZZSB2SRJ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA_nHgFLpURgrnUOgkxH2_jB6Z6IXSSP8s',
-    appId: '1:68990521985:android:6950ec28ef068eba84b380',
-    messagingSenderId: '68990521985',
-    projectId: 'charpaiproject',
-    storageBucket: 'charpaiproject.appspot.com',
+    apiKey: 'AIzaSyDkVAK5Kr4U-e3ylCG3rIuMqACle_BfkPg',
+    appId: '1:229137297335:android:eda1ca79bb89ccaa014232',
+    messagingSenderId: '229137297335',
+    projectId: 'crypto-cent',
+    storageBucket: 'crypto-cent.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC1b7t3Tbbao3ubDJZlSghkPz3krYRMXNs',
-    appId: '1:68990521985:ios:f3195227c527ef0984b380',
-    messagingSenderId: '68990521985',
-    projectId: 'charpaiproject',
-    storageBucket: 'charpaiproject.appspot.com',
-    iosClientId: '68990521985-vepslfv151isikll7imj3jmqj5obi57n.apps.googleusercontent.com',
-    iosBundleId: 'com.example.charpi',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC1b7t3Tbbao3ubDJZlSghkPz3krYRMXNs',
-    appId: '1:68990521985:ios:f3195227c527ef0984b380',
-    messagingSenderId: '68990521985',
-    projectId: 'charpaiproject',
-    storageBucket: 'charpaiproject.appspot.com',
-    iosClientId: '68990521985-vepslfv151isikll7imj3jmqj5obi57n.apps.googleusercontent.com',
-    iosBundleId: 'com.example.charpi',
+    apiKey: 'AIzaSyA4z53cZ6RpIGQKMDx7l-GMu_ie9BV5Krk',
+    appId: '1:229137297335:ios:c8f8140190512f43014232',
+    messagingSenderId: '229137297335',
+    projectId: 'crypto-cent',
+    storageBucket: 'crypto-cent.appspot.com',
+    iosClientId: '229137297335-prg1amdhikgqm4srpn66c9ja0uh5gl1l.apps.googleusercontent.com',
+    iosBundleId: 'com.devmarkaz.cryptoCent',
   );
 }

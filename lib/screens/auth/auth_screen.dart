@@ -1,11 +1,7 @@
-import 'package:charpi/screens/auth/phone_registration/otp_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../providers/user_change_provider.dart';
 import '../../utilities/app_images.dart';
 import '../../widgets/custom_widgets/custom_widget.dart';
 import 'login_screen.dart';
-import 'phone_registration/phone_number_screen.dart';
 import 'signup-screen.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -13,7 +9,6 @@ class AuthScreen extends StatelessWidget {
   static const String routeName = '/authscren';
   @override
   Widget build(BuildContext context) {
-    UserChangeProvider userPro = Provider.of<UserChangeProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -25,31 +20,26 @@ class AuthScreen extends StatelessWidget {
               const ForText(name: 'Welcome', bold: true, size: 26),
               const SizedBox(height: 70),
               CustomElevatedButton(
-                title: 'Continue as Doctor',
+                title: 'Continue with email or phone number',
                 onTap: () {
-                  userPro.currentper('doctors');
                   Navigator.push(
                     context,
                     // ignore: always_specify_types
                     MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const PhoneNumberScreen(),
-                    ),
+                        builder: (BuildContext context) => LoginScreen()),
                   );
                 },
               ),
               const SizedBox(height: 20),
               CustomElevatedButton(
-                title: 'Continue as User',
+                title: 'Create a account',
                 onTap: () {
-                  userPro.currentper('users');
                   Navigator.push(
                     context,
                     // ignore: always_specify_types
                     MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const PhoneNumberScreen(),
-                    ),
+                        builder: (BuildContext context) =>
+                             SignupScreen()),
                   );
                 },
                 bgColor: const Color(0xffE2F0F7),
