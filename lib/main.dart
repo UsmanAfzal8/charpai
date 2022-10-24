@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           darkTheme: AppThemes.dark,
           themeMode: theme.themeMode,
           home: 
-          (AuthMethods.uid.isEmpty)?const PhoneNumberScreen():
+          (AuthMethods.uid.isEmpty)?const AuthScreen():
           const MainScreen(),
         );
       }),

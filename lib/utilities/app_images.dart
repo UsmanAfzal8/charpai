@@ -32,7 +32,8 @@ class AppImages {
   static String get fvrtUnselected => 'assets/icons/heart.png';
   //drwaer
   static String get drawer => 'assets/icons/drawer.png';
-
+//background
+ static String get cowbackground => 'assets/images/cow_background.jpg';
   //images
   static String get controller => 'assets/images/controller.png';
 }

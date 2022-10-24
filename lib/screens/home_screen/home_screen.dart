@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/categories_provider.dart';
 import '../../providers/product_provider.dart';
 import '../../utilities/app_images.dart';
 import '../../widgets/custom_widgets/custom_widget.dart';
-import '../search_screen/search_screen.dart';
+
 import 'all_contacts_catrgories/all_screen.dart';
-import 'card_swiper.dart';
-import 'categories/category.dart';
+import 'header.dart';
+
 import 'latest_product/latest_product.dart';
 import 'upload_screen.dart';
 
@@ -37,32 +37,29 @@ class HomeScreen extends StatelessWidget {
         _,
       ) {
         return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Headeriamge(),
-                SizedBox(height: 20),
-                ForText(
-                  name: 'category',
-                  bold: true,
-                  size: 22,
-                ),
-                SizedBox(height: 20),
-                //CategoryScreen(),
-                AllScreen(),
-                SizedBox(height: 20),
-                ForText(
-                  name: 'Latest Product',
-                  bold: true,
-                  size: 22,
-                ),
-                SizedBox(height: 20),
-                LatestProduct(),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const <Widget>[
+              Headeriamge(),
+              SizedBox(height: 20),
+              ForText(
+                name: 'category',
+                bold: true,
+                size: 22,
+              ),
+              SizedBox(height: 20),
+              //CategoryScreen(),
+              AllScreen(),
+              SizedBox(height: 20),
+              ForText(
+                name: 'Latest Product',
+                bold: true,
+                size: 22,
+              ),
+              SizedBox(height: 20),
+              LatestProduct(),
+            ],
           ),
         );
       }),
@@ -84,24 +81,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      actions: <Widget>[
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              // ignore: always_specify_types
-              MaterialPageRoute(
-                builder: (BuildContext context) => const SerachScreen(),
-              ),
-            );
-          },
-          splashRadius: 20,
-          icon: Icon(
-            CupertinoIcons.search,
-            color: Theme.of(context).iconTheme.color,
-          ),
-        ),
-      ],
       title: Container(
         height: 50,
         width: 100,

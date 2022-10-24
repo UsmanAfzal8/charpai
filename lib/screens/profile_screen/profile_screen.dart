@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
-   AuthProvider authPro= Provider.of<AuthProvider>(context);
+    AuthProvider authPro = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          uperscreen(context,authPro.apUser.name!,authPro.apUser.imageURL!),
+          uperscreen(context, authPro.apUser.name!),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -133,19 +133,20 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget uperscreen(BuildContext context,String name,String ImageUrl) {
+  Widget uperscreen(BuildContext context, String name) {
     return Container(
       height: 220,
       width: double.infinity,
       color: Theme.of(context).primaryColor,
       child: Column(
         children: <Widget>[
-          CircleAvatar(
+          const CircleAvatar(
             radius: 64,
-            backgroundImage: NetworkImage(
-                ImageUrl),
+            backgroundColor: Colors.black,
+            // backgroundImage: NetworkImage(
+            //     ImageUrl),
           ),
-         const SizedBox(
+          const SizedBox(
             height: 10,
           ),
           ForText(
