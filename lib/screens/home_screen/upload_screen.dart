@@ -89,35 +89,50 @@ class _UploadScreenState extends State<UploadScreen> {
             key: _formKey,
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Stack(
-                      children: <Widget>[
-                        _image != null
-                            ? CircleAvatar(
-                                radius: 64,
-                                backgroundImage: MemoryImage(_image!),
-                                backgroundColor: Colors.red,
-                              )
-                            : const CircleAvatar(
-                                radius: 64,
-                                backgroundColor: Colors.grey,
+                _image != null
+                    ? GestureDetector(
+                        onTap: () {
+                          selectImage();
+                        },
+                        child: Container(
+                          height: 200,
+                          width: 200,
+                          decoration: BoxDecoration(
+                              image:
+                                  DecorationImage(image: MemoryImage(_image!))),
+                        ),
+                      )
+                    : Container(
+                        height: 200,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          color: Colors.grey,
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: selectImage,
+                                icon: const Icon(
+                                    Icons.add_circle_outline_outlined,
+                                    color: Colors.white,
+                                    size: 36),
                               ),
-                        Positioned(
-                          bottom: -10,
-                          left: 80,
-                          child: IconButton(
-                            onPressed: selectImage,
-                            icon: const Icon(Icons.add_a_photo),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const ForText(
+                                name: 'Add Image',
+                                color: Colors.white,
+                                size: 22,
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                textField(context, productname, 'productname'),
-                textField(context, productdecription, 'product Description'),
+                        ),
+                      ),
+                textField(context, productname, 'name'),
+                textField(context, productdecription, 'Description'),
                 textField(context, amount, 'amount'),
                 textField(context, quantity, 'quantity'),
                 textField(context, category, 'category'),
