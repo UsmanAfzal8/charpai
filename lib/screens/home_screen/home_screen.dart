@@ -9,7 +9,8 @@ import 'categories/category.dart';
 import 'header.dart';
 
 import 'latest_product/latest_product.dart';
-import 'upload_screen.dart';
+import 'upload/upload.dart';
+import 'upload/upload_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               context,
               // ignore: always_specify_types
               MaterialPageRoute(
-                  builder: (BuildContext context) => const UploadScreen()),
+                  builder: (BuildContext context) => const Upload()),
             );
           },
           child: const Icon(Icons.add)),

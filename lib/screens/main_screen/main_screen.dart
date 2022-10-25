@@ -1,5 +1,5 @@
 import '../../providers/auth_provider.dart';
-import '../empty_screen/empty_screen.dart';
+import '../doctor_gig/doctor_gigs.dart';
 import '../screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
     HomeScreen(),
     FavoriteScreen(),
     CartScreen(),
-    EmptyScreen(),
+    DoctorGigScreen(),
     ProfileScreen(),
   ];
 
@@ -22,31 +22,32 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-    @override
+  @override
   void initState() {
     load();
     super.initState();
   }
-  bool loading=false;
-   void load(){
+
+  bool loading = false;
+  void load() {
     setState(() {
-      loading=true;
+      loading = true;
     });
-  Provider.of<AuthProvider>(context,listen: false).getUser();
+    Provider.of<AuthProvider>(context, listen: false).getUser();
     setState(() {
-      loading=false;
+      loading = false;
     });
-   }
+  }
+
   @override
   Widget build(BuildContext context) {
     int currentIndex = Provider.of<AppProvider>(context).currentTap;
-    
 
-    return loading? 
-    const CircularProgressIndicator()
-    :Scaffold(
-      body: MainScreen._pages[currentIndex],
-      bottomNavigationBar: const MainBottomNavigationBar(),
-    );
+    return loading
+        ? const CircularProgressIndicator()
+        : Scaffold(
+            body: MainScreen._pages[currentIndex],
+            bottomNavigationBar: const MainBottomNavigationBar(),
+          );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:charpi/providers/auth_provider.dart';
+import 'package:charpi/screens/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/custom_widgets/custom_widget.dart';
@@ -19,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          uperscreen(context, authPro.apUser.name!,authPro.apUser.imageURL!),
+          uperscreen(context, authPro.apUser.name!, authPro.apUser.imageURL!),
           const SizedBox(height: 10),
           const SizedBox(height: 40),
           Padding(
@@ -56,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
           context,
           // ignore: always_specify_types
           MaterialPageRoute(
-            builder: (BuildContext context) => const EmptyScreen(),
+            builder: (BuildContext context) => const AuthScreen(),
           ),
         );
       },
@@ -88,18 +89,17 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget uperscreen(BuildContext context, String name,String ImageUrl) {
+  Widget uperscreen(BuildContext context, String name, String ImageUrl) {
     return Container(
       height: 220,
       width: double.infinity,
       color: Theme.of(context).primaryColor,
       child: Column(
         children: <Widget>[
-           CircleAvatar(
+          CircleAvatar(
             radius: 64,
-             backgroundImage: NetworkImage(
-                ImageUrl),
-          
+            backgroundImage: NetworkImage(ImageUrl),
+
             // backgroundImage: NetworkImage(
             //     ImageUrl),
           ),

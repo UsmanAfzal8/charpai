@@ -8,6 +8,7 @@ import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
 import 'providers/cart_provider.dart';
 import 'providers/categories_provider.dart';
+import 'providers/doctor_gig_provider.dart';
 import 'providers/product_provider.dart';
 import 'providers/provider.dart';
 import 'screens/screens.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AuthProvider>(
           create: (BuildContext context) => AuthProvider(),
         ),
+        ChangeNotifierProvider<DoctorGigProvider>(
+          create: (BuildContext context) => DoctorGigProvider(),
+        ),
         ChangeNotifierProvider<AppThemeProvider>.value(
           value: AppThemeProvider(),
         ),
@@ -51,15 +55,16 @@ class MyApp extends StatelessWidget {
       child: Consumer<AppThemeProvider>(
           builder: (BuildContext context, AppThemeProvider theme, _) {
         return MaterialApp(
-          title: 'Crypto Cent',
+          title: '4pai',
           debugShowCheckedModeBanner: false,
           theme: AppThemes.light,
           darkTheme: AppThemes.dark,
           themeMode: theme.themeMode,
-          home: AuthScreen(),
-          // home: (AuthMethods.uid.isEmpty)
-          //     ? const PhoneNumberScreen()
-          //     : const MainScreen(),
+          // home:MainScreen(),
+          // // home: AuthScreen(),
+          home: (AuthMethods.uid.isEmpty)
+              ? const AuthScreen()
+              : const MainScreen(),
         );
       }),
     );

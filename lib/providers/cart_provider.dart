@@ -12,7 +12,7 @@ class CartProvider extends ChangeNotifier {
         id: value.pid,
         title: value.productname,
         imageurl: value.imageurl,
-        price: value.amount,
+        price: value.amount.toDouble(),
         quantity: quantity);
 
     _cartItems.add(temp);

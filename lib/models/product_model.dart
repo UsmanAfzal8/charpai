@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Product {
   final String pid;
-  final double amount;
+  final int amount;
   final String colors;
   final String quantity;
   final String productname;

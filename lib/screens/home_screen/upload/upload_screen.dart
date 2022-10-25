@@ -3,13 +3,13 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../database/databse_storage.dart';
-import '../../database/product_api.dart';
-import '../../function/time_date_function.dart';
-import '../../models/product_model.dart';
-import '../../utilities/image_picker.dart';
-import '../../widgets/custom_widgets/custom_toast.dart';
-import '../../widgets/custom_widgets/custom_widget.dart';
+import '../../../database/databse_storage.dart';
+import '../../../database/product_api.dart';
+import '../../../function/time_date_function.dart';
+import '../../../models/product_model.dart';
+import '../../../utilities/image_picker.dart';
+import '../../../widgets/custom_widgets/custom_toast.dart';
+import '../../../widgets/custom_widgets/custom_widget.dart';
 
 class UploadScreen extends StatefulWidget {
   const UploadScreen({super.key});
@@ -41,7 +41,7 @@ class _UploadScreenState extends State<UploadScreen> {
 
       Product product = Product(
         pid: TimeStamp.timestamp.toString(),
-        amount: double.parse(amount.text),
+        amount: int.parse(amount.text),
         colors: '',
         quantity: quantity.text,
         productname: productname.text,
@@ -78,11 +78,7 @@ class _UploadScreenState extends State<UploadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Upload'),
-      ),
-      body: SingleChildScrollView(
+    return  SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
@@ -149,7 +145,7 @@ class _UploadScreenState extends State<UploadScreen> {
             ),
           ),
         ),
-      ),
+     
     );
   }
 
